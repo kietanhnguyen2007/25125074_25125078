@@ -27,13 +27,19 @@
     <ClCompile Include="Recurring_Transactions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Master_Data_Management.cpp">
+    <ClCompile Include="Expense_categories.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Statistics.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Data_Persistence.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Income_Sources.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Wallets.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -47,13 +53,28 @@
     <ClInclude Include="Income.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Master_Data_Management.h">
+    <ClInclude Include="Expense_categories.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Recurring_Transaction.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Statistics.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="endianness.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="utils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="uuid_v4.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Income_Sources.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Wallets.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
