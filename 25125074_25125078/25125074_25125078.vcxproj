@@ -140,7 +140,7 @@
     <ClInclude Include="Income.h" />
     <ClInclude Include="Expense_categories.h" />
     <ClInclude Include="Income_Sources.h" />
-    <ClInclude Include="Recurring_Transaction.h" />
+    <ClInclude Include="Recurring_Transactions.h" />
     <ClInclude Include="Statistics.h" />
     <ClInclude Include="utils.h" />
     <ClInclude Include="uuid_v4.h" />

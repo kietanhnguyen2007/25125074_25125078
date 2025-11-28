@@ -56,9 +56,6 @@
     <ClInclude Include="Expense_categories.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Recurring_Transaction.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Statistics.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -75,6 +72,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Wallets.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Recurring_Transactions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
