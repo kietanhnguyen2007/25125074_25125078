@@ -12,4 +12,5 @@ struct Income_Management {
 	string Description;
 	friend istream& operator>>(istream& in, Income_Management& a);// dung cin>>a(a thuoc kieu du lieu Income_Management)
 	Income_Management* add(Income_Management*& list, int& n, int& size,Wallets* wlist,int wcount,Income_Sources* slist,int scount);// ham them giao dich thu nhap
+	Income_Management* remove(Income_Management*& list, int& n, Wallets* wlist, int wcount);//them ham xoa giao dich neu lo co nhap sai 
 };
