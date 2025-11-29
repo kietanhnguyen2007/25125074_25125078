@@ -22,7 +22,7 @@ Income_Sources* Income_Sources::them(Income_Sources* A, int& n, int& size) {
 	cout << "Enter the income source name: " << endl;
 	while (cin.peek() == '\n') cin.ignore();
 	getline(cin, a.Name);
-	a.ID = generateUUID();
+	a.ID = generateUUID(); //can use getUniqueId to generate random numbers without duplicates but it is slow
 	A[n] = a;
 	n++;
 	return A;

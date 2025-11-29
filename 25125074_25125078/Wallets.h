@@ -3,10 +3,8 @@
 #include <iostream>
 #include "utils.h"
 using namespace std;
-class Wallets {
-private:
+struct Wallets {
 	string ID;
-public:
 	string Name;
 	double balance;
 	Wallets* them(Wallets* A, int &n, int &size);

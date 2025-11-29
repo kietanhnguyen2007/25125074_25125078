@@ -3,10 +3,8 @@
 #include <iostream>
 #include "utils.h"
 using namespace std;
-class Income_Sources {
-private:
+struct Income_Sources {
 	string ID;
-public:
 	string Name;
 	Income_Sources* them(Income_Sources* A, int &n, int &size);
 	Income_Sources* xoa(Income_Sources* A, int &n);

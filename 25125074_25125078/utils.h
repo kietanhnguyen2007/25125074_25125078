@@ -10,3 +10,19 @@ inline string generateUUID() {
     UUID uuid = myUUIDGen.getUUID();
     return uuid.str();
 }
+/*template <typename T>
+std::string getUniqueId(T* list, int currentSize) {
+    std::string candidateId;
+    bool isDuplicate;
+    do {
+        candidateId = generateUUID();
+        isDuplicate = false;
+        for (int i = 0; i < currentSize; i++) {
+            if (list[i].ID == candidateId) {
+                isDuplicate = true;
+                break;
+            }
+        }
+    } while (isDuplicate);
+    return candidateId;
+}*/

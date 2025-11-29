@@ -16,7 +16,7 @@ Expense_Categories* Expense_Categories::them(Expense_Categories* A, int &n, int 
 		cout << "Enter the expense name: " << endl;
 		while(cin.peek() == '\n') cin.ignore();
 		getline(cin, a.Name);
-		a.ID =generateUUID();
+		a.ID =generateUUID();//can use getUniqueId to generate random numbers without duplicates but it is slow
 		A[n] = a;
 		n++;
 		return A;
