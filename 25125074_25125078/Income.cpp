@@ -24,4 +24,18 @@ Income_Management* Income_Management::add(Income_Management*& list, int& n, int&
 			list = NewList;
 			delete[] xoa;
 		}
+	Income_Management x;
+	list[n++] = x;
+	cin >> x;
+	if (wcount == 0) {
+		cout << "No wallets available!" << endl;
+		return list;
+	}
+	else {
+		cout << "Choose wallet: " << endl;
+		for (int i = 0; i < wcount; i++) {
+			cout << i + 1 << ". " << wlist[i].Name << endl;
+		}
+		int choice;
+	}
 }
