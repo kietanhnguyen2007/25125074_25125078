@@ -123,7 +123,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Data_Persistence.cpp" />
+    <ClCompile Include="loaddata.cpp" />
+    <ClCompile Include="Savedata.cpp" />
     <ClCompile Include="Expense.cpp" />
     <ClCompile Include="Income.cpp" />
     <ClCompile Include="Income_Sources.cpp" />
@@ -134,7 +135,8 @@
     <ClCompile Include="Wallets.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Data_Persistence.h" />
+    <ClInclude Include="loaddata.h" />
+    <ClInclude Include="Savedata.h" />
     <ClInclude Include="endianness.h" />
     <ClInclude Include="Expense.h" />
     <ClInclude Include="Income.h" />

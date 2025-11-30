@@ -33,7 +33,7 @@
     <ClCompile Include="Statistics.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Data_Persistence.cpp">
+    <ClCompile Include="Savedata.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Income_Sources.cpp">
@@ -42,9 +42,12 @@
     <ClCompile Include="Wallets.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="loaddata.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Data_Persistence.h">
+    <ClInclude Include="Savedata.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Expense.h">
@@ -75,6 +78,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Recurring_Transactions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="loaddata.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
