@@ -1,9 +1,6 @@
-// Expense.cpp
 #include "Expense.h"
 #include <iostream>
 #include <string>
-#include "Wallets.h"
-#include "Expense_categories.h"
 
 using namespace std;
 
