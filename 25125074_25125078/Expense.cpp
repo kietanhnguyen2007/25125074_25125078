@@ -1,4 +1,5 @@
 #include "Expense.h"
+#include "utils.h"
 #include <iostream>
 #include <string>
 
@@ -50,7 +51,7 @@ Expense_Management* Expense_Management::add(
     }
     cout << "Select wallet number (or 0 to cancel): ";
     int wchoice;
-    cin >> wchoice;
+    wchoice = inputInt();
     if (wchoice == 0) {
         cout << "Cancelled.\n";
         return list;
@@ -73,7 +74,7 @@ Expense_Management* Expense_Management::add(
     }
     cout << "Select category number (or 0 to cancel): ";
     int cchoice;
-    cin >> cchoice;
+    cchoice = inputInt();
     if (cchoice == 0) {
         cout << "Cancelled.\n";
         return list;

@@ -40,7 +40,7 @@ Income_Sources* Income_Sources::xoa(Income_Sources* A, int& n) {
 		}
 		int choice;
 		cout << "Enter the number you want to delete: " << endl;
-		cin >> choice;
+		choice = inputInt();
 		if (choice <= 0 || choice > n) cout << "Invalid index" << endl;
 		else {
 			for (int i = choice - 1; i < n - 1; i++) {
@@ -65,7 +65,7 @@ Income_Sources* Income_Sources::edit(Income_Sources* A, int& n) {
 		}
 		int choice;
 		cout << "Enter the number you want to edit: " << endl;
-		cin >> choice;
+		choice = inputInt();
 		if (choice <= 0 || choice > n) cout << "Invalid index" << endl;
 		else {
 			cout << "Enter the new name for Income Source: " << endl;
@@ -93,7 +93,7 @@ Income_Sources* Income_Sources::move(Income_Sources* A, int& n) {
 			int choice;
 			cout << "Choose the number you want to move up or down" << endl;
 			cout << "Enter 0 to stop" << endl;
-			cin >> choice;
+			choice = inputInt();
 			if (choice < 0 || choice > n) cout << "Invalid index" << endl;
 			else if (choice == 1) {
 				cout << "Move the first element down" << endl;
@@ -109,7 +109,7 @@ Income_Sources* Income_Sources::move(Income_Sources* A, int& n) {
 			else {
 				cout << "Enter 1 to move up and Enter 2 to move down: ";
 				int dir;
-				cin >> dir;
+				dir=inputInt();
 				if (dir == 1) swap(A[choice - 1], A[choice - 2]);
 				else if (dir == 2) swap(A[choice - 1], A[choice]);
 				else cout << "Invalid movement" << endl;

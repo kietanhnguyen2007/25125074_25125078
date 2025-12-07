@@ -26,3 +26,21 @@ std::string getUniqueId(T* list, int currentSize) {
     } while (isDuplicate);
     return candidateId;
 }*/
+int inputInt() {
+    int n;
+    while (!(cin >> n)) {
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cout << "Invalid input. Please enter a number: ";
+    }
+    return n;
+}
+double inputDouble() {
+    double n;
+    while (!(cin >> n)) {
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cout << "Invalid input. Please enter a number: ";
+    }
+    return n;
+}
