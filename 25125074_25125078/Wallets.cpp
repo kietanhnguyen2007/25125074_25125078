@@ -2,8 +2,7 @@
 #include <algorithm>
 #include <iostream>
 #include <string>
-#include "Utils.h"
-
+#include "utils.h"
 using namespace std;
 
 Wallets* Wallets::them(Wallets* A, int& n, int& size) {

@@ -1,8 +1,7 @@
 #include "Expense.h"
-#include "utils.h"
 #include <iostream>
 #include <string>
-
+#include "utils.h"
 using namespace std;
 
 istream& operator>>(istream& in, Expense_Management& a) {

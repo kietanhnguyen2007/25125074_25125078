@@ -2,8 +2,7 @@
 #include <algorithm>
 #include <iostream>
 #include <string>
-#include "Utils.h"
-
+#include "utils.h"
 using namespace std;
 
 Income_Sources* Income_Sources::them(Income_Sources* A, int& n, int& size) {

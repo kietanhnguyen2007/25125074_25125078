@@ -1,6 +1,6 @@
 #include "Expense_categories.h"
-#include "utils.h"
 #include <algorithm>
+#include "utils.h"
 Expense_Categories* Expense_Categories::them(Expense_Categories* A, int &n, int &size) {
 	if (n == size) {
 		if (size == 0) size = size + 1;

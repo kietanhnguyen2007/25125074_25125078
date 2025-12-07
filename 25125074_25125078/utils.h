@@ -26,7 +26,7 @@ std::string getUniqueId(T* list, int currentSize) {
     } while (isDuplicate);
     return candidateId;
 }*/
-int inputInt() {
+inline int inputInt() {
     int n;
     while (!(cin >> n)) {
         cin.clear();
@@ -35,7 +35,7 @@ int inputInt() {
     }
     return n;
 }
-double inputDouble() {
+inline double inputDouble() {
     double n;
     while (!(cin >> n)) {
         cin.clear();
