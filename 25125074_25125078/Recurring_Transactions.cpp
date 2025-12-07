@@ -1,3 +1,4 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include "Recurring_Transactions.h"
 #include <iostream>
 #include <sstream>

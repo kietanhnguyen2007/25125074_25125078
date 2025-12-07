@@ -130,3 +130,42 @@ void loadIncomeData(string& filename, Income_Management*& list, int& n, int& siz
 	}
 	in.close();
 }
+void loadExpenseData(string& filename, Expense_Management*& list, int& n, int& size) {
+	if (list != NULL) {
+		delete[] list;
+		list = NULL;
+	}
+	ifstream in(filename, ios::binary);
+	if (!in) {
+		n = 0;
+		size = 10;
+		list = new Expense_Management[size];
+		return;
+	}
+	else {
+		in.read(reinterpret_cast<char*>(&n), sizeof(n));
+		if (n == 0) size = 10;
+		else size = n * 2;
+		list = new Expense_Management[size];
+	}
+	for (int i = 0; i < n; i++) {
+		ll Datelength = 0;
+		in.read(reinterpret_cast<char*>(&Datelength), sizeof(Datelength));
+		list[i].Date.resize(Datelength);
+		in.read(&list[i].Date[0], Datelength);
+		ll categoryIDlength = 0;
+		in.read(reinterpret_cast<char*>(&categoryIDlength), sizeof(categoryIDlength));
+		list[i].CategoryID.resize(categoryIDlength);
+		in.read(&list[i].CategoryID[0], categoryIDlength);
+		in.read(reinterpret_cast<char*>(&list[i].amount), sizeof(list[i].amount));
+		ll WalletIDlength = 0;
+		in.read(reinterpret_cast<char*>(&WalletIDlength), sizeof(WalletIDlength));
+		list[i].WalletID.resize(WalletIDlength);
+		in.read(&list[i].WalletID[0], WalletIDlength);
+		ll DescriptionLength = 0;
+		in.read(reinterpret_cast<char*>(&DescriptionLength), sizeof(DescriptionLength));
+		list[i].Description.resize(DescriptionLength);
+		in.read(&list[i].Description[0], DescriptionLength);
+	}
+	in.close();
+}

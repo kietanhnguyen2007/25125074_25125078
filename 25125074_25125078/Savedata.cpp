@@ -78,3 +78,26 @@ void saveIncomeData(string& filename, Income_Management* list, int n) {
 	}
 	out.close();
 }
+void saveExpenseData(string& filename, Expense_Management* list, int n) {
+	ofstream out(filename, ios::binary);
+	if (!out) {
+		cerr << "Error opening file for saving" << endl;
+	}
+	out.write(reinterpret_cast<char*>(&n), sizeof(n));
+	for (int i = 0; i < n; i++) {
+		ll dateLength = list[i].Date.size();
+		out.write(reinterpret_cast<char*>(&dateLength), sizeof(dateLength));
+		out.write(list[i].Date.c_str(), dateLength);
+		ll CategoryIDlength = list[i].CategoryID.size();
+		out.write(reinterpret_cast<char*>(&CategoryIDlength), sizeof(CategoryIDlength));
+		out.write(list[i].CategoryID.c_str(), CategoryIDlength);
+		out.write(reinterpret_cast<char*>(&list[i].amount), sizeof(list[i].amount));
+		ll walletIDLength = list[i].WalletID.size();
+		out.write(reinterpret_cast<char*>(&walletIDLength), sizeof(walletIDLength));
+		out.write(list[i].WalletID.c_str(), walletIDLength);
+		ll descriptionLength = list[i].Description.size();
+		out.write(reinterpret_cast<char*>(&descriptionLength), sizeof(descriptionLength));
+		out.write(list[i].Description.c_str(), descriptionLength);
+	}
+	out.close();
+}

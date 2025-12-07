@@ -1,4 +1,5 @@
-#include <Statistics.h>
+#define _CRT_SECURE_NO_WARNINGS
+#include "Statistics.h"
 #include <sstream>
 #include <ctime>
 using namespace std;

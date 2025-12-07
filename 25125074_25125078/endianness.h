@@ -1,4 +1,3 @@
-
 #pragma once
 #if defined(__GLIBC__) || defined(__GNU_LIBRARY__) || defined(__ANDROID__)
 #include <endian.h>
