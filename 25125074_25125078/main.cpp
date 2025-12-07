@@ -88,37 +88,135 @@ void printExpenses(Expense_Management* expenses, int expCount) {
 
 void walletsMenu(Wallets*& wlist, int& wcount, int& wsize) {
     while (true) {
-        cout << "\n--- Wallets Menu ---\n1. List wallets\n2. (Use your Wallets module to add/edit/remove)\n0. Back\nChoice: ";
-        int ch = askInt("");
-        if (ch == 1) printWallets(wlist, wcount);
+        cout << "\n--- Wallets Menu ---\n";
+        cout << "1. List wallets\n";
+        cout << "2. Add Wallet\n";
+        cout << "3. Edit Wallet\n";
+        cout << "4. Delete Wallet\n";
+        cout << "5. Move Wallet\n";
+        cout << "0. Back\n";
+        
+        int ch = askInt("Choice: ");
+
+        if (ch == 1) {
+            printWallets(wlist, wcount);
+            pause();
+        }
         else if (ch == 2) {
-            cout << "Call your Wallets module functions here (add/edit/remove UI) — implement with your existing Wallets API.\n";
-        } else if (ch == 0) break;
-        pause();
+            Wallets temp; 
+            wlist = temp.them(wlist, wcount, wsize);
+            cout << "Add wallet done.\n";
+            pause();
+        }
+        else if (ch == 3) {
+            Wallets temp;
+            wlist = temp.edit(wlist, wcount);
+            pause();
+        }
+        else if (ch == 4) {
+            Wallets temp;
+            wlist = temp.xoa(wlist, wcount);
+            pause();
+        }
+        else if (ch == 5) {
+            Wallets temp;
+            wlist = temp.move(wlist, wcount);
+            pause();
+        }
+        else if (ch == 0) {
+            break;
+        }
+        else {
+            cout << "Invalid choice.\n";
+        }
     }
 }
 
 void categoriesMenu(Expense_Categories*& clist, int& ccount, int& csize) {
     while (true) {
-        cout << "\n--- Expense Categories Menu ---\n1. List\n2. (Add/Edit/Remove using Expense_Categories module)\n0. Back\nChoice: ";
-        int ch = askInt("");
-        if (ch == 1) printCategories(clist, ccount);
+        cout << "\n--- Expense Categories Menu ---\n";
+        cout << "1. List categories\n";
+        cout << "2. Add Category\n";
+        cout << "3. Edit Category\n";
+        cout << "4. Delete Category\n";
+        cout << "5. Move Category\n";
+        cout << "0. Back\n";
+        
+        int ch = askInt("Choice: ");
+
+        if (ch == 1) {
+            printCategories(clist, ccount);
+            pause();
+        }
         else if (ch == 2) {
-            cout << "Call your Expense_Categories module functions here.\n";
-        } else if (ch == 0) break;
-        pause();
+            Expense_Categories temp;
+            clist = temp.them(clist, ccount, csize);
+            cout << "Add category done.\n";
+            pause();
+        }
+        else if (ch == 3) {
+            Expense_Categories temp;
+            clist = temp.edit(clist, ccount);
+            pause();
+        }
+        else if (ch == 4) {
+            Expense_Categories temp;
+            clist = temp.xoa(clist, ccount);
+            pause();
+        }
+        else if (ch == 5) {
+            Expense_Categories temp;
+            clist = temp.move(clist, ccount);
+            pause();
+        }
+        else if (ch == 0) break;
+        else {
+            cout << "Invalid choice.\n";
+        }
     }
 }
 
 void sourcesMenu(Income_Sources*& slist, int& scount, int& ssize) {
     while (true) {
-        cout << "\n--- Income Sources Menu ---\n1. List\n2. (Add/Edit/Remove using Income_Sources module)\n0. Back\nChoice: ";
-        int ch = askInt("");
-        if (ch == 1) printSources(slist, scount);
+        cout << "\n--- Income Sources Menu ---\n";
+        cout << "1. List sources\n";
+        cout << "2. Add Source\n";
+        cout << "3. Edit Source\n";
+        cout << "4. Delete Source\n";
+        cout << "5. Move Source\n";
+        cout << "0. Back\n";
+        
+        int ch = askInt("Choice: ");
+
+        if (ch == 1) {
+            printSources(slist, scount);
+            pause();
+        }
         else if (ch == 2) {
-            cout << "Call your Income_Sources module functions here.\n";
-        } else if (ch == 0) break;
-        pause();
+            Income_Sources temp;
+            slist = temp.them(slist, scount, ssize);
+            cout << "Add source done.\n";
+            pause();
+        }
+        else if (ch == 3) {
+            Income_Sources temp;
+            slist = temp.edit(slist, scount);
+            pause();
+        }
+        else if (ch == 4) {
+            Income_Sources temp;
+            slist = temp.xoa(slist, scount);
+            pause();
+        }
+        else if (ch == 5) {
+            Income_Sources temp;
+            slist = temp.move(slist, scount);
+            pause();
+        }
+        else if (ch == 0) break;
+        else {
+            cout << "Invalid choice.\n";
+        }
     }
 }
 
