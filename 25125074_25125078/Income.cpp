@@ -1,11 +1,12 @@
 #include "Income.h"
+#include "utils.h"
 istream& operator>>(istream& in, Income_Management& a) {
 	cout << "\n--- ADD NEW INCOME TRANSACTION ---" << endl;
 	while (cin.peek() == '\n') cin.ignore();
 	cout << "Enter Date(dd/mm/yyyy): "<< endl;
 	getline(in, a.Date);
 	cout << "Enter amount: " << endl;
-	in >> a.amount;
+	a.amount = inputDouble();
 	cout << "Enter description: ";
 	while (cin.peek() == '\n') cin.ignore();
 	getline(cin, a.Description);
@@ -37,7 +38,7 @@ Income_Management* Income_Management::add(Income_Management*& list, int& n, int&
 		}
 		int wchoice;
 		cout << "select wallet number: " << endl;
-		cin >> wchoice;
+		wchoice = inputInt();
 		if (wchoice < 1 || wchoice > wcount) {
 			cout << "Invalid selection!" << endl;
 			return list;
@@ -56,7 +57,7 @@ Income_Management* Income_Management::add(Income_Management*& list, int& n, int&
 		}
 		int sChoice;
 		cout << "Select source number: ";
-		cin >> sChoice;
+		sChoice = inputInt();
 		if (sChoice < 1 || sChoice > scount) {
 			cout << "Invalid selection! Operation cancelled." << endl;
 			return list;
@@ -82,7 +83,7 @@ Income_Management* Income_Management::remove(Income_Management*& list, int& n, W
 	}
 	int choice;
 	cout << "Enter the number you want to delete: ";
-	cin >> choice;
+	choice = inputInt();
 	if (choice < 1 || choice > n) {
 		cout << "Invalid selection!" << endl;
 		return list;
