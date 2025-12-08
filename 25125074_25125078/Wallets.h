@@ -6,7 +6,7 @@ using namespace std;
 struct Wallets {
 	string ID;
 	string Name;
-	double balance;
+	double balance=0;
 	Wallets* them(Wallets* A, int &n, int &size);
 	Wallets* xoa(Wallets* A, int &n);
 	Wallets* edit(Wallets* A, int &n);
