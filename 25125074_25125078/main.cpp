@@ -62,26 +62,50 @@ void printSources(Income_Sources* slist, int scount) {
     }
 }
 
-void printIncomes(Income_Management* incomes, int incCount) {
+void printIncomes(Income_Management* incomes, int incCount,Wallets* wlist, Income_Sources* slist,int wcount, int scount) {
     if (!incomes || incCount == 0) { cout << "No incomes.\n"; return; }
     cout << "=== Incomes ===\n";
+	string a = "";
+    for(int i=0;i<wcount;i++){
+		if(incomes[i].WalletID==wlist[i].ID){
+			a = wlist[i].Name;
+		}
+	}
+	string b = "";
+    for (int i = 0; i < scount; i++) {
+        if (incomes[i].SourceID == slist[i].ID) {
+            b = slist[i].Name;
+		}
+    }
     for (int i = 0; i < incCount; ++i) {
-        cout << (i+1) << ". Date: " << incomes[i].Date
-             << " | Amount: " << incomes[i].amount
-             << " | SourceID: " << incomes[i].SourceID
-             << " | WalletID: " << incomes[i].WalletID
+        cout << (i + 1) << ". Date: " << incomes[i].Date
+            << " | Amount: " << incomes[i].amount
+            << " | SourceName: " << b
+            << " | WalletName: " << a
              << " | " << incomes[i].Description << "\n";
     }
 }
 
-void printExpenses(Expense_Management* expenses, int expCount) {
+void printExpenses(Expense_Management* expenses, int expCount,Wallets* wlist,Expense_Categories* clist,int wcount,int ccount) {
     if (!expenses || expCount == 0) { cout << "No expenses.\n"; return; }
     cout << "=== Expenses ===\n";
+	string a = "";
+	for (int i = 0; i < wcount; i++) {
+		if (expenses[i].WalletID == wlist[i].ID) {
+			a = wlist[i].Name;
+		}
+	}
+	string b = "";
+    for (int i = 0; i < ccount; i++) {
+        if (expenses[i].CategoryID == clist[i].ID) {
+			b = clist[i].Name;
+            }
+	}
     for (int i = 0; i < expCount; ++i) {
         cout << (i+1) << ". Date: " << expenses[i].Date
              << " | Amount: " << expenses[i].amount
-             << " | CategoryID: " << expenses[i].CategoryID
-             << " | WalletID: " << expenses[i].WalletID
+			<< " | CategoryName: " << b
+             << " | WalletName: " << a
              << " | " << expenses[i].Description << "\n";
     }
 }
@@ -224,7 +248,7 @@ void incomeMenu(Income_Management*& incomes, int& incCount, int& incSize, Wallet
     while (true) {
         cout << "\n--- Income Menu ---\n1. List incomes\n2. Add income\n3. Remove income\n0. Back\nChoice: ";
         int ch = askInt("");
-        if (ch == 1) { printIncomes(incomes, incCount); pause(); }
+        if (ch == 1) { printIncomes(incomes, incCount,wlist,slist,wcount,scount); pause(); }
         else if (ch == 2) {
             Income_Management tmp;
             incomes = tmp.add(incomes, incCount, incSize, wlist, wcount, slist, scount);
@@ -250,7 +274,7 @@ void expenseMenu(
     while (true) {
         cout << "\n--- Expense Menu ---\n1. List expenses\n2. Add expense\n3. Remove expense\n0. Back\nChoice: ";
         int ch = askInt("");
-        if (ch == 1) { printExpenses(expenses, expCount); pause(); }
+        if (ch == 1) { printExpenses(expenses, expCount,wlist,clist,wcount,ccount); pause(); }
         else if (ch == 2) {
             Expense_Management tmp;
             expenses = tmp.add(expenses, expCount, expSize, wlist, wcount, clist, ccount);
@@ -408,6 +432,8 @@ int main() {
     loadExpense_categories(EXP_CAT_FILE, categories, catCount, catSize);
     loadIncomeSource(SRC_FILE, sources, srcCount, srcSize);
     loadIncomeData(INCOME_FILE, incomes, incCount, incSize);
+	loadExpenseData(EXPENSE_FILE, expenses, expCount, expSize);
+	loadRecurringData(RECURRING_FILE, recurring);
 
     while (true) {
         cout << "\n===== DASHBOARD =====\n";
@@ -425,6 +451,8 @@ int main() {
             saveExpense_categories(EXP_CAT_FILE, categories, catCount);
             saveIncomeSource(SRC_FILE, sources, srcCount);
             saveIncomeData(INCOME_FILE, incomes, incCount);
+			saveExpenseData(EXPENSE_FILE, expenses, expCount);
+			saveRecurringData(RECURRING_FILE, recurring);
             cout << "Saved.\n";
             pause();
         }
@@ -436,6 +464,7 @@ int main() {
                 saveExpense_categories(EXP_CAT_FILE, categories, catCount);
                 saveIncomeSource(SRC_FILE, sources, srcCount);
                 saveIncomeData(INCOME_FILE, incomes, incCount);
+				saveExpenseData(EXPENSE_FILE, expenses, expCount);
                 cout << "Saved.\n";
             }
             break;

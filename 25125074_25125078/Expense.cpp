@@ -6,12 +6,11 @@ using namespace std;
 
 istream& operator>>(istream& in, Expense_Management& a) {
     cout << "ADD EXPENSE TRANSACTION" << endl;
-    while (cin.peek() == '\n') cin.ignore();
     cout << "Enter Date (dd/mm/yyyy): ";
     getline(in, a.Date);
     cout << "Enter amount: ";
     in >> a.amount;
-    while (cin.peek() == '\n') cin.ignore();
+    cin.ignore();
     cout << "Enter description: ";
     getline(in, a.Description);
     return in;

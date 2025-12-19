@@ -41,7 +41,7 @@ struct RecurringEntry {
 
 struct RecurringManager {
     RecurringEntry* list;
-    int n;      
+    int n;
     int size;   
     RecurringManager();
     ~RecurringManager();

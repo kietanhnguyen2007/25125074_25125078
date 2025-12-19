@@ -2,13 +2,13 @@
 #include "utils.h"
 istream& operator>>(istream& in, Income_Management& a) {
 	cout << "\n--- ADD NEW INCOME TRANSACTION ---" << endl;
-	while (cin.peek() == '\n') cin.ignore();
 	cout << "Enter Date(dd/mm/yyyy): "<< endl;
+	in.ignore();
 	getline(in, a.Date);
 	cout << "Enter amount: " << endl;
 	a.amount = inputDouble();
 	cout << "Enter description: ";
-	while (cin.peek() == '\n') cin.ignore();
+	cin.ignore();
 	getline(cin, a.Description);
 	return in;
 }
@@ -50,7 +50,6 @@ Income_Management* Income_Management::add(Income_Management*& list, int& n, int&
 			cout << "ERROR: No income sources available" << endl;
 			return list;
 		}
-
 		cout << "--- SELECT INCOME SOURCE ---" << endl;
 		for (int i = 0; i < scount; i++) {
 			cout << "[" << i + 1 << "] " << slist[i].Name << endl;
