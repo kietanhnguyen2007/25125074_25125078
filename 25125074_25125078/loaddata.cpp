@@ -211,6 +211,9 @@ void loadRecurringData(string& filename, RecurringManager& rm) {
 		rm.list[i].endDate.resize(endDatelength);
 		in.read(&rm.list[i].endDate[0], endDatelength);
 		in.read((char*)(&rm.list[i].nextDate), sizeof(rm.list[i].nextDate));
+		in.read((char*)(&rm.list[i].freq.type), sizeof(rm.list[i].freq.type));
+		in.read((char*)(&rm.list[i].freq.interval), sizeof(rm.list[i].freq.interval));
+		in.read((char*)(&rm.list[i].occurrences), sizeof(rm.list[i].occurrences));
 	}
 	in.close();
 }

@@ -302,10 +302,38 @@ void recurringMenu(
         if (ch == 1) { recurring.listAll(); pause(); }
         else if (ch == 2) {
             RecurringEntry r;
-            cout << "Is income? (1 = income, 0 = expense): ";
+            cout << "Is income? (1 = income, 0 = expense): "<<endl;
             r.isIncome = askInt("") != 0;
-            cout << "Wallet ID: "; getline(cin, r.WalletID);
-            cout << "Category/Source ID: "; getline(cin, r.CategoryOrSourceID);
+            cout << "--- CHOOSE WALLETS : ---" << endl;
+            for (int i = 1; i <= wcount; i++) {
+                cout << i << ". " << wlist[i-1].Name << endl;
+            }
+            int wchoice;
+            cin >> wchoice;
+            cin.ignore();
+            if (r.isIncome == 1) {
+                cout << "--- CHOOSE INCOME SOURCES: ---" << endl;
+                int schoice;
+                for (int i = 1; i <= scount; i++) {
+                    cout << i << ". " << slist[i-1].Name << endl;
+                }
+                cout << "Choice: " << endl;
+                cin >> schoice;
+                cin.ignore();
+                r.CategoryOrSourceID = slist[schoice-1].ID;
+            }
+            else {
+                int cchoice;
+				cout << "--- CHOOSE EXPENSE CATEGORIES: ---" << endl;
+                for (int i = 1; i <= ccount; i++) {
+                    cout << i << ". " << clist[i].Name << endl;
+                }
+				cout << "Choice: " << endl;
+                cin >> cchoice;
+                cin.ignore();
+                r.CategoryOrSourceID = clist[cchoice-1].ID;
+            }
+            r.WalletID=wlist[wchoice-1].ID;
             cout << "Amount: "; cin >> r.amount; cin.ignore();
             cout << "Description: "; getline(cin, r.Description);
             cout << "Start Date (dd/mm/yyyy): "; getline(cin, r.startDate);
@@ -371,20 +399,36 @@ void statisticsMenu(
             StatPair* arr = Statistics::expenseByCategory(expenses, expCount, from, to, count);
             cout << "Expense by Category:\n";
             for (int i = 0; i < count; ++i) {
-                cout << arr[i].ID << " : " << arr[i].total << "\n";
+                string name = arr[i].ID;
+                for (int k = 0; k < ccount; k++) {
+                    if (clist[k].ID == arr[i].ID) {
+                        name = clist[k].Name;
+                        break;
+                    }
+                }
+                cout << name << " : " << arr[i].total << "\n";
             }
             delete[] arr;
             pause();
         }
         else if (ch == 3) {
             string fromS = askLine("From (dd/mm/yyyy): ");
-            string toS   = askLine("To   (dd/mm/yyyy): ");
+            string toS = askLine("To (dd/mm/yyyy): ");
             time_t from = Statistics::parseDate(fromS);
-            time_t to   = Statistics::parseDate(toS);
+            time_t to = Statistics::parseDate(toS);
             int count = 0;
             StatPair* arr = Statistics::incomeBySource(incomes, incCount, from, to, count);
             cout << "Income by Source:\n";
-            for (int i = 0; i < count; ++i) cout << arr[i].ID << " : " << arr[i].total << "\n";
+            for (int i = 0; i < count; ++i) {
+                string name = arr[i].ID;
+                for (int j = 0; j < scount; j++) {
+                    if (slist[j].ID == arr[i].ID) {
+                        name = slist[j].Name;
+                        break;
+                    }
+                }
+                cout << name << " : " << arr[i].total << "\n";
+            }
             delete[] arr;
             pause();
         }
@@ -392,19 +436,26 @@ void statisticsMenu(
             int year = askInt("Year (e.g. 2025): ");
             MonthlyNet m = Statistics::monthlyNetForYear(incomes, incCount, expenses, expCount, year);
             cout << "Monthly net for " << year << ":\n";
-            for (int mo = 0; mo < 12; ++mo) cout << (mo+1) << ": " << m.month[mo] << "\n";
+            for (int mo = 0; mo < 12; ++mo) cout << (mo + 1) << ": " << m.month[mo] << "\n";
             pause();
         }
         else if (ch == 5) {
             string fromS = askLine("From (dd/mm/yyyy): ");
-            string toS   = askLine("To   (dd/mm/yyyy): ");
+            string toS = askLine("To   (dd/mm/yyyy): ");
             time_t from = Statistics::parseDate(fromS);
-            time_t to   = Statistics::parseDate(toS);
+            time_t to = Statistics::parseDate(toS);
             int count = 0;
             StatPair* arr = Statistics::walletSummary(incomes, incCount, expenses, expCount, from, to, count);
             cout << "Wallet summary:\n";
             for (int i = 0; i < count; ++i) {
-                cout << arr[i].ID << " : " << arr[i].total << "\n";
+                string name = arr[i].ID;
+                for (int j = 0; j < wcount; j++) {
+                    if (wlist[j].ID == arr[i].ID) {
+                        name = wlist[j].Name;
+                        break;
+                    }
+                }
+                cout << name << " : " << arr[i].total << "\n";
             }
             delete[] arr;
             pause();

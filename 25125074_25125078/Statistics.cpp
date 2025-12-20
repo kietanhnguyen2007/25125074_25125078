@@ -60,56 +60,69 @@ namespace Statistics {
         return -1;
     }
 
-    StatPair* expenseByCategory(Expense_Management* expenses, int expCount, time_t from, time_t to, int &outCount) {
+    StatPair* expenseByCategory(Expense_Management* expenses, int expCount, time_t from, time_t to, int& outCount) {
         outCount = 0;
-        StatPair* result = nullptr;
-        if (!expenses || expCount <= 0) return result;
-        if (from > to) return result;
+        int capacity = 10;
+        StatPair* result = new StatPair[capacity];
 
+        if (!expenses || expCount <= 0) {
+            delete[] result;
+            return nullptr;
+        }
         for (int i = 0; i < expCount; ++i) {
             time_t t = recToTime(expenses[i].Date);
             if (t == 0) continue;
             if (t < from || t > to) continue;
-
-            const string &cid = expenses[i].CategoryID;
+            const string& cid = expenses[i].CategoryID;
             int idx = findStatIndex(result, outCount, cid);
             if (idx >= 0) {
                 result[idx].total += expenses[i].amount;
-            } else {
-                StatPair* tmp = new StatPair[outCount + 1];
-                for (int j = 0; j < outCount; ++j) tmp[j] = result[j];
-                tmp[outCount].ID = cid;
-                tmp[outCount].total = expenses[i].amount;
-                delete[] result;
-                result = tmp;
+            }
+            else {
+                if (outCount == capacity) {
+                    int newCapacity = capacity * 2;
+                    StatPair* tmp = new StatPair[newCapacity];
+                    for (int j = 0; j < outCount; ++j) tmp[j] = result[j];
+                    delete[] result;
+                    result = tmp;
+                    capacity = newCapacity;
+                }
+                result[outCount].ID = cid;
+                result[outCount].total = expenses[i].amount;
                 outCount++;
             }
         }
         return result;
     }
 
-    StatPair* incomeBySource(Income_Management* incomes, int incCount, time_t from, time_t to, int &outCount) {
+     StatPair* incomeBySource(Income_Management* incomes, int incCount, time_t from, time_t to, int& outCount) {
         outCount = 0;
-        StatPair* result = nullptr;
-        if (!incomes || incCount <= 0) return result;
-        if (from > to) return result;
-
+        int capacity = 10;
+        StatPair* result = new StatPair[capacity];
+        if (!incomes || incCount <= 0) {
+            delete[] result;
+            return nullptr;
+        }
         for (int i = 0; i < incCount; ++i) {
             time_t t = recToTime(incomes[i].Date);
             if (t == 0) continue;
             if (t < from || t > to) continue;
-
-            const string &sid = incomes[i].SourceID;
+            const string& sid = incomes[i].SourceID;
             int idx = findStatIndex(result, outCount, sid);
             if (idx >= 0) {
                 result[idx].total += incomes[i].amount;
-            } else {
-                StatPair* tmp = new StatPair[outCount + 1];
-                for (int j = 0; j < outCount; ++j) tmp[j] = result[j];
-                tmp[outCount].ID = sid;
-                tmp[outCount].total = incomes[i].amount;
-                delete[] result;
-                result = tmp;
+            }
+            else {
+                if (outCount == capacity) {
+                    int newCapacity = capacity * 2;
+                    StatPair* tmp = new StatPair[newCapacity];
+                    for (int j = 0; j < outCount; ++j) tmp[j] = result[j];
+                    delete[] result;
+                    result = tmp;
+                    capacity = newCapacity;
+                }
+                result[outCount].ID = sid;
+                result[outCount].total = incomes[i].amount;
                 outCount++;
             }
         }
@@ -145,49 +158,62 @@ namespace Statistics {
         return net;
     }
 
-    StatPair* walletSummary(Income_Management* incomes, int incCount, Expense_Management* expenses, int expCount, time_t from, time_t to, int &outCount) {
+    StatPair* walletSummary(Income_Management* incomes, int incCount, Expense_Management* expenses, int expCount, time_t from, time_t to, int& outCount) {
         outCount = 0;
-        StatPair* result = nullptr;
-
-        if (from > to) return result;
-
+        int capacity = 10;
+        StatPair* result = new StatPair[capacity];
+        if (from > to) {
+            delete[] result;
+            return nullptr;
+        }
         if (incomes && incCount > 0) {
             for (int i = 0; i < incCount; ++i) {
                 time_t t = recToTime(incomes[i].Date);
                 if (t == 0) continue;
                 if (t < from || t > to) continue;
 
-                const string &wid = incomes[i].WalletID;
+                const string& wid = incomes[i].WalletID;
                 int idx = findStatIndex(result, outCount, wid);
-                if (idx >= 0) result[idx].total += incomes[i].amount;
+                if (idx >= 0) {
+                    result[idx].total += incomes[i].amount;
+                }
                 else {
-                    StatPair* tmp = new StatPair[outCount + 1];
-                    for (int j = 0; j < outCount; ++j) tmp[j] = result[j];
-                    tmp[outCount].ID = wid;
-                    tmp[outCount].total = incomes[i].amount;
-                    delete[] result;
-                    result = tmp;
+                    if (outCount == capacity) {
+                        int newCapacity = capacity * 2;
+                        StatPair* tmp = new StatPair[newCapacity];
+                        for (int j = 0; j < outCount; ++j) tmp[j] = result[j];
+                        delete[] result;
+                        result = tmp;
+                        capacity = newCapacity;
+                    }
+                    result[outCount].ID = wid;
+                    result[outCount].total = incomes[i].amount;
                     outCount++;
                 }
             }
         }
-
         if (expenses && expCount > 0) {
             for (int i = 0; i < expCount; ++i) {
                 time_t t = recToTime(expenses[i].Date);
                 if (t == 0) continue;
                 if (t < from || t > to) continue;
 
-                const string &wid = expenses[i].WalletID;
+                const string& wid = expenses[i].WalletID;
                 int idx = findStatIndex(result, outCount, wid);
-                if (idx >= 0) result[idx].total -= expenses[i].amount;
+                if (idx >= 0) {
+                    result[idx].total -= expenses[i].amount;
+                }
                 else {
-                    StatPair* tmp = new StatPair[outCount + 1];
-                    for (int j = 0; j < outCount; ++j) tmp[j] = result[j];
-                    tmp[outCount].ID = wid;
-                    tmp[outCount].total = -expenses[i].amount;
-                    delete[] result;
-                    result = tmp;
+                    if (outCount == capacity) {
+                        int newCapacity = capacity * 2;
+                        StatPair* tmp = new StatPair[newCapacity];
+                        for (int j = 0; j < outCount; ++j) tmp[j] = result[j];
+                        delete[] result;
+                        result = tmp;
+                        capacity = newCapacity;
+                    }
+                    result[outCount].ID = wid;
+                    result[outCount].total = -expenses[i].amount;
                     outCount++;
                 }
             }
