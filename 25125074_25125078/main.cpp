@@ -304,6 +304,11 @@ void recurringMenu(
             RecurringEntry r;
             cout << "Is income? (1 = income, 0 = expense): "<<endl;
             r.isIncome = askInt("") != 0;
+            if(wcount==0){
+                cout << "No wallets available. Cannot add recurring entry.\n";
+                pause();
+                continue;
+			}
             cout << "--- CHOOSE WALLETS : ---" << endl;
             for (int i = 1; i <= wcount; i++) {
                 cout << i << ". " << wlist[i-1].Name << endl;
@@ -312,6 +317,11 @@ void recurringMenu(
             cin >> wchoice;
             cin.ignore();
             if (r.isIncome == 1) {
+                if(scount==0){
+                    cout << "No income sources available. Cannot add recurring entry.\n";
+                    pause();
+                    continue;
+				}
                 cout << "--- CHOOSE INCOME SOURCES: ---" << endl;
                 int schoice;
                 for (int i = 1; i <= scount; i++) {
@@ -324,6 +334,11 @@ void recurringMenu(
             }
             else {
                 int cchoice;
+                if (ccount == 0) {
+                    cout << "No expense categories available. Cannot add recurring entry.\n";
+                    pause();
+                    continue;
+                }
 				cout << "--- CHOOSE EXPENSE CATEGORIES: ---" << endl;
                 for (int i = 1; i <= ccount; i++) {
                     cout << i << ". " << clist[i].Name << endl;
