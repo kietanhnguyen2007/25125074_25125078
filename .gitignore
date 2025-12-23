@@ -1,0 +1,49 @@
+# =======================================================
+# 1. RÁC HỆ THỐNG & KẾT QUẢ BUILD (Cả 2 người đều sinh ra)
+# =======================================================
+# Thư mục chứa file chạy (.exe) và file trung gian
+Debug/
+Release/
+x64/
+x86/
+build/
+bin/
+obj/
+
+# Các file rác cụ thể
+*.exe
+*.dll
+*.pdb
+*.ilk
+*.obj
+*.log
+*.tlog
+*.idb
+*.ipch
+
+# =======================================================
+# 2. FILE CẤU HÌNH CÁ NHÂN (Tuyệt đối không đẩy lên)
+# =======================================================
+# Của Visual Studio (Thư mục này nằm ở root, rất nặng)
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Của Visual Studio Code
+.vscode/
+
+# =======================================================
+# 3. FILE DỮ LIỆU (Tránh xung đột file nhị phân)
+# =======================================================
+*.bin
+*.dat
+*.db
+*.sqlite
+
+# =======================================================
+# 4. KHÁC
+# =======================================================
+.DS_Store
+Thumbs.db
