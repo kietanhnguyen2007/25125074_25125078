@@ -355,7 +355,13 @@ void recurringMenu(
             cout << "End Date (empty for none): "; getline(cin, r.endDate);
             cout << "Interval type (0=day,1=week,2=month,3=year): "; r.freq.type = askInt("");
             cout << "Interval (e.g. 1 = every 1 unit): "; r.freq.interval = askInt("");
-            cout << "Occurrences (-1 for infinite): "; r.occurrences = askInt("");
+            if (!r.endDate.empty()) {
+                r.occurrences = -1;
+            }
+            else {
+                cout << "Occurrences (-1 for infinite): ";
+                r.occurrences = askInt("");
+            }
             r.nextDate = 0; 
             recurring.add(r);
             cout << "Recurring entry added.\n";
