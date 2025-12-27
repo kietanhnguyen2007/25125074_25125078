@@ -18,6 +18,32 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\endianness.h" />
+    <ClInclude Include="include\Expense.h" />
+    <ClInclude Include="include\Expense_categories.h" />
+    <ClInclude Include="include\Income.h" />
+    <ClInclude Include="include\Income_Sources.h" />
+    <ClInclude Include="include\loaddata.h" />
+    <ClInclude Include="include\Recurring_Transactions.h" />
+    <ClInclude Include="include\Savedata.h" />
+    <ClInclude Include="include\Statistics.h" />
+    <ClInclude Include="include\utils.h" />
+    <ClInclude Include="include\uuid_v4.h" />
+    <ClInclude Include="include\Wallets.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Expense.cpp" />
+    <ClCompile Include="src\Expense_categories.cpp" />
+    <ClCompile Include="src\Income.cpp" />
+    <ClCompile Include="src\Income_Sources.cpp" />
+    <ClCompile Include="src\loaddata.cpp" />
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\Recurring_Transactions.cpp" />
+    <ClCompile Include="src\Savedata.cpp" />
+    <ClCompile Include="src\Statistics.cpp" />
+    <ClCompile Include="src\Wallets.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
@@ -102,6 +128,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(ProjectDir)include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -116,38 +143,13 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(ProjectDir)include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="loaddata.cpp" />
-    <ClCompile Include="Savedata.cpp" />
-    <ClCompile Include="Expense.cpp" />
-    <ClCompile Include="Income.cpp" />
-    <ClCompile Include="Income_Sources.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="Expense_categories.cpp" />
-    <ClCompile Include="Recurring_Transactions.cpp" />
-    <ClCompile Include="Statistics.cpp" />
-    <ClCompile Include="Wallets.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="loaddata.h" />
-    <ClInclude Include="Savedata.h" />
-    <ClInclude Include="endianness.h" />
-    <ClInclude Include="Expense.h" />
-    <ClInclude Include="Income.h" />
-    <ClInclude Include="Expense_categories.h" />
-    <ClInclude Include="Income_Sources.h" />
-    <ClInclude Include="Recurring_Transactions.h" />
-    <ClInclude Include="Statistics.h" />
-    <ClInclude Include="utils.h" />
-    <ClInclude Include="uuid_v4.h" />
-    <ClInclude Include="Wallets.h" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
