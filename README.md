@@ -23,4 +23,4 @@ data is automatically loaded at startup, ensuring that no information is lost
 between sessions.
 
 # Demo video link
-Update later
+https://youtu.be/h7kd-Vk0to8
