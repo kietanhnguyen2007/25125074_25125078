@@ -19,6 +19,7 @@ g++ -mavx2 -g src/*.cpp -Iinclude -o main.exe
 ```
 # Run
 With Visual Code:
+To ensure the correct path, right-click the `code implementation` folder and select **Open in Integrated Terminal**.
 ```bash
 ./main.exe
 ```
